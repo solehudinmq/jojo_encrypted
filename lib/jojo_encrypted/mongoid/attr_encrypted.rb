@@ -9,10 +9,7 @@ module JojoEncrypted
             define_method("#{attribute}=".to_sym) do |value|
               return if value.nil?
               
-              puts "SETTER ATTR : #{attribute}"
-              puts "SETTER VALUE : #{value}"
-              puts "SETTER SELF : #{self}"
-              puts "SETTER GET VALUE : #{self[attribute.to_sym]}"
+              byebug
 
               self.public_send(
                 "encrypted_#{attribute}=".to_sym,
