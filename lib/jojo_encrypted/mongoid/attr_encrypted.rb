@@ -11,10 +11,10 @@ module JojoEncrypted
               
               byebug
 
-              self.public_send(
-                "encrypted_#{attribute}=".to_sym,
-                JojoEncrypted::Mongoid::Services::EncryptionService.encrypt(value)
-              )
+              # self.public_send(
+              #   "encrypted_#{attribute}=".to_sym,
+              #   JojoEncrypted::Mongoid::Services::EncryptionService.encrypt(value)
+              # )
             end
 
             define_method(attribute) do
