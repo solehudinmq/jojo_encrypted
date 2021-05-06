@@ -7,10 +7,10 @@ module JojoEncrypted
         def encrypts(*attributes)
           attributes.each do |attribute|
             define_method("#{attribute}=".to_sym) do |value|
-              return if value.nil?
-              
-              byebug
+              return unless value
 
+              self[attribute] = JojoEncrypted::Mongoid::Services::EncryptionService.encrypt(value)
+              
               # self.public_send(
               #   "encrypted_#{attribute}=".to_sym,
               #   JojoEncrypted::Mongoid::Services::EncryptionService.encrypt(value)
@@ -18,10 +18,12 @@ module JojoEncrypted
             end
 
             define_method(attribute) do
-              # value = self.public_send("encrypted_#{attribute}".to_sym)
+              return unless value
 
-              # puts "GETTER ATTR : #{attribute}"
-              # puts "GETTER VALUE : #{value}"
+              self[attribute] = JojoEncrypted::Mongoid::Services::EncryptionService.decrypt(value)
+              self["#{attribute}_encrypted".to_sym] = JojoEncrypted::Mongoid::Services::EncryptionService.encrypt(value)
+
+              # value = self.public_send("encrypted_#{attribute}".to_sym)
 
               # JojoEncrypted::Mongoid::Services::EncryptionService.decrypt(value) if value.present?
             end
