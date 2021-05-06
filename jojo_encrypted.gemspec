@@ -2,8 +2,6 @@
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
-require 'active_support'
-
 require "jojo_encrypted/version"
 require "jojo_encrypted/mongoid/services/encryption_service"
 require "jojo_encrypted/mongoid/attr_encrypted"
