@@ -5,7 +5,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'active_support'
 require 'yaml'
 
-YAML.load_file("config/jojo_encrypted.yml").each do |key, value|
+YAML.load_file("#{Dir.pwd}/config/jojo_encrypted.yml").each do |key, value|
   ENV[value] = value
 end
 
