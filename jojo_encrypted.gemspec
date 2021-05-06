@@ -2,9 +2,16 @@
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
+require 'active_support'
+require 'yaml'
+
 require "jojo_encrypted/version"
 require "jojo_encrypted/mongoid/services/encryption_service"
 require "jojo_encrypted/mongoid/attr_encrypted"
+
+YAML.load_file("config/jojo_encrypted.yml").each do |key, value|
+  ENV[value] = value
+end
 
 Gem::Specification.new do |spec|
   spec.name          = "jojo_encrypted"
@@ -42,4 +49,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 1.17"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.0"
+  spec.add_development_dependency "byebug", "~> 11.1.3"
+
+  spec.add_dependency "activesupport", '~> 6.1', ">= 6.1.3.2"
 end
