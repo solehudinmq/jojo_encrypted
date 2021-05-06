@@ -5,13 +5,13 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'active_support'
 require 'yaml'
 
-require "jojo_encrypted/version"
-require "jojo_encrypted/mongoid/services/encryption_service"
-require "jojo_encrypted/mongoid/attr_encrypted"
-
 YAML.load_file("config/jojo_encrypted.yml").each do |key, value|
   ENV[value] = value
 end
+
+require "jojo_encrypted/version"
+require "jojo_encrypted/mongoid/services/encryption_service"
+require "jojo_encrypted/mongoid/attr_encrypted"
 
 Gem::Specification.new do |spec|
   spec.name          = "jojo_encrypted"
