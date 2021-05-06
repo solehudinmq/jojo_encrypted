@@ -12,6 +12,7 @@ module JojoEncrypted
               puts "SETTER ATTR : #{attribute}"
               puts "SETTER VALUE : #{value}"
               puts "SETTER SELF : #{self}"
+              puts "SETTER GET VALUE : #{self[attribute]}"
 
               self.public_send(
                 "encrypted_#{attribute}=".to_sym,
