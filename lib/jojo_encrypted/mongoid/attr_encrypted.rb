@@ -18,12 +18,12 @@ module JojoEncrypted
             end
 
             define_method(attribute) do
-              value = self.public_send("encrypted_#{attribute}".to_sym)
+              # value = self.public_send("encrypted_#{attribute}".to_sym)
 
-              puts "GETTER ATTR : #{attribute}"
-              puts "GETTER VALUE : #{value}"
+              # puts "GETTER ATTR : #{attribute}"
+              # puts "GETTER VALUE : #{value}"
 
-              JojoEncrypted::Mongoid::Services::EncryptionService.decrypt(value) if value.present?
+              # JojoEncrypted::Mongoid::Services::EncryptionService.decrypt(value) if value.present?
             end
           end
         end
