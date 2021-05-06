@@ -10,10 +10,12 @@ module JojoEncrypted
               return unless value
 
               self[attribute] = JojoEncrypted::Mongoid::Services::EncryptionService.encrypt(value)
-              
-              define_method("#{attribute}_decrypted") do
-                self[:"#{attribute}_decrypted"]=value
-              end
+            end
+
+            define_method("#{attribute}_decrypted") do |value|
+              return unless value
+
+              self["#{attribute}_decrypted".to_sym] = JojoEncrypted::Mongoid::Services::EncryptionService.decrypt(self[attribute])
             end
 
             define_method(attribute) do
