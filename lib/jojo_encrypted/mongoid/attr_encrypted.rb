@@ -9,14 +9,11 @@ module JojoEncrypted
             define_method("#{attribute}=".to_sym) do |value|
               return unless value
 
-              # self[attribute] = JojoEncrypted::Mongoid::Services::EncryptionService.encrypt(value)
-              self["#{attribute}_encrypted".to_sym] = JojoEncrypted::Mongoid::Services::EncryptionService.encrypt(value)
-              self[attribute] = value
+              self[attribute] = JojoEncrypted::Mongoid::Services::EncryptionService.encrypt(value)
             end
 
             define_method(attribute) do
-              self["#{attribute}_encrypted".to_sym] = self["#{attribute}_encrypted".to_sym]
-              self[attribute] = self[attribute]
+              byebug
               # self[attribute] = JojoEncrypted::Mongoid::Services::EncryptionService.decrypt(self[attribute])
               # self["#{attribute}_encrypted".to_sym] = self[attribute]
 
