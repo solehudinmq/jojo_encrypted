@@ -17,6 +17,12 @@ module JojoEncrypted
               self[attribute] = JojoEncrypted::Mongoid::Services::EncryptionService.decrypt(self[attribute])
             end
           end
+
+          set_callback :save, :before, do |model| 
+            attributes.each do |attribute| 
+              model[attribute] = JojoEncrypted::Mongoid::Services::EncryptionService.encrypt(model[attribute]) unless model[attribute].blank?
+            end
+          end
         end
       end
     end
