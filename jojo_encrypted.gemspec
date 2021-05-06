@@ -4,9 +4,10 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 require 'active_support'
 require 'yaml'
+require 'byebug'
 
 YAML.load_file("#{Dir.pwd}/config/jojo_encrypted.yml").each do |key, value|
-  ENV[value] = value
+  ENV[key] = value
 end
 
 require "jojo_encrypted/version"
