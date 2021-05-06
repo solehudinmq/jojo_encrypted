@@ -39,15 +39,16 @@ With the contents of a file like this:
 You can try the following steps to create a value from the .yml file:
 
   1. SECRET_KEY_BASE
-    - irb
-    - require 'active_support'
-    - SecureRandom.random_bytes(
-        ActiveSupport::MessageEncryptor.key_len
-      ) 
+    
+    $ irb
+    $ require 'active_support'
+    $ SecureRandom.random_bytes(
+    $    ActiveSupport::MessageEncryptor.key_len
+    $  ) 
   2. ENCRYPTION_SERVICE_SALT
-    - irb
-    - require 'securerandom'
-    - SecureRandom.hex(64)
+    $ irb
+    $ require 'securerandom'
+    $ SecureRandom.hex(64)
 
 ## Development
 
