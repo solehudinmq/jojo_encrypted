@@ -51,6 +51,31 @@ You can try the following steps to create a value from the .yml file:
     $ - require 'securerandom'
     $ - SecureRandom.hex(64)
 
+In the model you have to do this to be able to encrypt the field:
+
+    $ include JojoEncrypted::Mongoid::AttrEncrypted
+    $ encrypts :name, :phone
+
+Model Example:
+
+    $ class User
+    $   include Mongoid::Document
+  
+    $   include JojoEncrypted::Mongoid::AttrEncrypted
+    $   encrypts :name, :phone
+
+    $   field :name, type: String
+    $   field :phone, type: String
+    $ end
+
+How to get the value from the field:
+
+    $ user = User.first
+    $ user.name # rROxnMF4762NQnrF9w==--6BoWbXrvSFN85mv1--iCkdjRqHvc9vDPBVlEL/Xg==
+    $ user.phone # C44p+IO6lk5wURYjrrCxmA==--ule6rHVOx/m29slx--L/AnfcGdredq+MbnNlRsjg==
+    $ user.name_decrypted # jes
+    $ user.phone_decrypted # 212121
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
