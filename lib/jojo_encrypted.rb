@@ -2,6 +2,7 @@ require 'yaml'
 require 'active_support/concern'
 require 'active_support/key_generator'
 require 'active_support/message_encryptor'
+require 'active_support/core_ext/module/delegation'
 require 'byebug'
 
 require "jojo_encrypted/version"
