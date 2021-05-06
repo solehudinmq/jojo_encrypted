@@ -1,10 +1,12 @@
 require 'yaml'
 require 'active_support/all'
+require 'byebug'
 
 module JojoEncrypted
   module Mongoid
     module Services
       class EncryptionService
+        byebug
         YAML.load_file("config/jojo_encrypted.yml").each do |key, value|
           ENV[key.to_s] = value
         end
