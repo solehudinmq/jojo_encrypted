@@ -6,10 +6,6 @@ require 'active_support'
 require 'yaml'
 require 'byebug'
 
-YAML.load_file("config/jojo_encrypted.yml").each do |key, value|
-  ENV[key] = value
-end
-
 require "jojo_encrypted/version"
 require "jojo_encrypted/mongoid/services/encryption_service"
 require "jojo_encrypted/mongoid/attr_encrypted"
