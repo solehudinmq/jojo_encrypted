@@ -13,11 +13,8 @@ module JojoEncrypted
             end
 
             define_method(attribute) do
-              byebug
-              # return if self.new_record?
-
               self[attribute] = self[attribute]
-              self["#{attribute}_encrypted".to_sym] = JojoEncrypted::Mongoid::Services::EncryptionService.encrypt(self[attribute])
+              self["#{attribute}_depcrypted".to_sym] = JojoEncrypted::Mongoid::Services::EncryptionService.decrypt(self[attribute])
             end
           end
         end
