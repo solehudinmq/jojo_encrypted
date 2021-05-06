@@ -12,6 +12,11 @@ Add this line to your application's Gemfile:
 gem 'jojo_encrypted'
 ```
 
+Or you can do this
+```ruby
+gem 'jojo_encrypted', git: 'git@github.com:solehudinmq/jojo_encrypted.git', branch: 'master'
+```
+
 And then execute:
 
     $ bundle
@@ -22,7 +27,27 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+After that create this file in:
+
+    $ config/jojo_encrypted.yml
+
+With the contents of a file like this:
+
+    $ SECRET_KEY_BASE: "xxxxxxx"
+    $ ENCRYPTION_SERVICE_SALT: "xxxxxxx"
+
+You can try the following steps to create a value from the .yml file:
+
+  1. SECRET_KEY_BASE
+    - irb
+    - require 'active_support'
+    - SecureRandom.random_bytes(
+        ActiveSupport::MessageEncryptor.key_len
+      ) 
+  2. ENCRYPTION_SERVICE_SALT
+    - irb
+    - require 'securerandom'
+    - SecureRandom.hex(64)
 
 ## Development
 
