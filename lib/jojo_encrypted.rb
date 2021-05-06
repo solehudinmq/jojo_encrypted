@@ -1,5 +1,7 @@
 require 'yaml'
-require 'active_support/all'
+require 'active_support/concern'
+require 'active_support/key_generator'
+require 'active_support/message_encryptor'
 require 'byebug'
 
 require "jojo_encrypted/version"
