@@ -1,4 +1,6 @@
 require 'yaml'
+require 'active_support'
+require 'byebug'
 
 require "jojo_encrypted/version"
 require "jojo_encrypted/mongoid/services/encryption_service"
