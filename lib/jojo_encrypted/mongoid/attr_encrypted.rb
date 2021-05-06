@@ -20,6 +20,10 @@ module JojoEncrypted
             #   JojoEncrypted::Mongoid::Services::EncryptionService.decrypt(value) if value.present?
             # end
 
+            puts "SELF : #{self}"
+            puts "ATTR : #{attribute}"
+            puts "VALUE : #{self[attribute]}"
+
             define_method("#{attribute}") do
               self[attribute]=JojoEncrypted::Mongoid::Services::EncryptionService.decrypt(self[attribute])
             end
