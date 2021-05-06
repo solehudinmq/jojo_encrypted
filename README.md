@@ -51,7 +51,7 @@ You can try the following steps to create a value from the .yml file:
     $ - require 'securerandom'
     $ - SecureRandom.hex(64)
 
-In the model you have to do this to be able to encrypt the field:
+In the model you have to do this to be able to encrypt the field (for version 1 only support for integration with Mongoid gem):
 
     $ include JojoEncrypted::Mongoid::AttrEncrypted
     $ encrypts :name, :phone
