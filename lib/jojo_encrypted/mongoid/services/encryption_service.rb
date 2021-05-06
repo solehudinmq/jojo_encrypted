@@ -1,15 +1,9 @@
-
-require 'yaml'
 require 'active_support/all'
 
 module JojoEncrypted
   module Mongoid
     module Services
       class EncryptionService
-        YAML.load_file("config/jojo_encrypted.yml").each do |key, value|
-          ENV[key.to_s] = value
-        end
-
         # how to generate 'ENCRYPTION_SERVICE_SALT' :
         # 1. irb
         # 2. require 'active_support'
