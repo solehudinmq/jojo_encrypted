@@ -9,6 +9,8 @@ module JojoEncrypted
             define_method("#{attribute}=".to_sym) do |value|
               return if value.nil?
 
+              puts "ATTR : #{attribute}"
+              puts "VALUE : #{value}"
               self.public_send(
                 "encrypted_#{attribute}=".to_sym,
                 JojoEncrypted::Mongoid::Services::EncryptionService.encrypt(value)
