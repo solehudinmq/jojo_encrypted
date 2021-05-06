@@ -1,4 +1,3 @@
-require 'yaml'
 require 'active_support/all'
 require 'byebug'
 
@@ -6,11 +5,6 @@ module JojoEncrypted
   module Mongoid
     module Services
       class EncryptionService
-        byebug
-        YAML.load_file("config/jojo_encrypted.yml").each do |key, value|
-          ENV[key.to_s] = value
-        end
-
         # how to generate 'ENCRYPTION_SERVICE_SALT' :
         # 1. irb
         # 2. require 'active_support'
@@ -22,14 +16,14 @@ module JojoEncrypted
         # 1. irb
         # 2. require 'securerandom'
         # 3. SecureRandom.hex(64)
-        KEY = ActiveSupport::KeyGenerator.new(
-          ENV.fetch("SECRET_KEY_BASE")
-        ).generate_key(
-          ENV.fetch("ENCRYPTION_SERVICE_SALT"),
-          ActiveSupport::MessageEncryptor.key_len
-        ).freeze
+        # KEY = ActiveSupport::KeyGenerator.new(
+        #   ENV.fetch("SECRET_KEY_BASE")
+        # ).generate_key(
+        #   ENV.fetch("ENCRYPTION_SERVICE_SALT"),
+        #   ActiveSupport::MessageEncryptor.key_len
+        # ).freeze
       
-        private_constant :KEY
+        # private_constant :KEY
         
         delegate :encrypt_and_sign, :decrypt_and_verify, to: :encryptor
       
@@ -44,7 +38,13 @@ module JojoEncrypted
         private
       
         def encryptor
-          ActiveSupport::MessageEncryptor.new(KEY)
+          # ActiveSupport::MessageEncryptor.new(KEY)
+          ActiveSupport::MessageEncryptor.new(ActiveSupport::KeyGenerator.new(
+            ENV.fetch("SECRET_KEY_BASE")
+          ).generate_key(
+            ENV.fetch("ENCRYPTION_SERVICE_SALT"),
+            ActiveSupport::MessageEncryptor.key_len
+          ))
         end
       end
     end
