@@ -18,6 +18,7 @@ module JojoEncrypted
             end
 
             define_method(attribute) do
+              byebug
               return unless value
 
               self[attribute] = JojoEncrypted::Mongoid::Services::EncryptionService.decrypt(value)
