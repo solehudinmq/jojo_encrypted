@@ -1,3 +1,6 @@
+require 'yaml'
+require 'byebug'
+
 require "jojo_encrypted/version"
 require "jojo_encrypted/mongoid/services/encryption_service"
 require "jojo_encrypted/mongoid/attr_encrypted"
