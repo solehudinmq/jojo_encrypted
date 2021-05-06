@@ -10,18 +10,19 @@ module JojoEncrypted
               return if value.nil?
 
               self.public_send(
-                "encrypted_#{attribute}=".to_sym,
+                "#{attribute}=".to_sym,
                 JojoEncrypted::Mongoid::Services::EncryptionService.encrypt(value)
               )
-            rescue
-              value
             end
 
             define_method(attribute) do
-              value = self.public_send("encrypted_#{attribute}".to_sym)
+              value = self.public_send("#{attribute}".to_sym)
               JojoEncrypted::Mongoid::Services::EncryptionService.decrypt(value) if value.present?
-            rescue
-              value
+            end
+
+            define_method("#{attribute}_encrypt") do
+              value = self.public_send("#{attribute}".to_sym)
+              JojoEncrypted::Mongoid::Services::EncryptionService.encrypt(value) if value.present?
             end
           end
         end
