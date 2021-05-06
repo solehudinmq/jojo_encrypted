@@ -7,6 +7,6 @@ module JojoEncrypted
   # Your code goes here... 
 
   YAML.load_file("config/jojo_encrypted.yml").each do |key, value|
-    ENV[key] = value
+    ENV[key.to_s] = value
   end
 end
