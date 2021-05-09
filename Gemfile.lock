@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     jojo_encrypted (0.1.0)
-      activesupport (>= 6.1.3.2)
+      activesupport (~> 6.1, >= 6.1.3.2)
 
 GEM
   remote: https://rubygems.org/
