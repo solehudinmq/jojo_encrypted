@@ -51,19 +51,17 @@ You can try the following steps to create a value from the .yml file:
     $ - require 'securerandom'
     $ - SecureRandom.hex(64)
 
-For version 1.0, only support for integration with mongoid gem
-
 In the model you have to do this to be able to encrypt the field ( value of encryptions will be save to database ):
 
-    $ include JojoEncrypted::Mongoid::AttrEncrypted
+    $ include JojoEncrypted::AttrEncrypted
     $ encrypts :name, :phone
 
-Model Example:
+Model example for mongoid:
 
     $ class User
     $   include Mongoid::Document
   
-    $   include JojoEncrypted::Mongoid::AttrEncrypted
+    $   include JojoEncrypted::AttrEncrypted
     $   encrypts :name, :phone
 
     $   field :name, type: String
@@ -80,15 +78,15 @@ How to get the value from the field:
 
 Or if you want to encryptions field as temporary ( value of encryptions will not save to database ), just use this method
 
-    $ include JojoEncrypted::Mongoid::AttrEncrypted
+    $ include JojoEncrypted::AttrEncrypted
     $ temporary_encrypts :name, :phone
 
-Model Example:
+Model example for mongoid:
 
     $ class User
     $   include Mongoid::Document
   
-    $   include JojoEncrypted::Mongoid::AttrEncrypted
+    $   include JojoEncrypted::AttrEncrypted
     $   temporary_encrypts :name, :phone
 
     $   field :name, type: String

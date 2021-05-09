@@ -3,8 +3,8 @@ lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 require "jojo_encrypted/version"
-require "jojo_encrypted/mongoid/services/encryption_service"
-require "jojo_encrypted/mongoid/attr_encrypted"
+require "jojo_encrypted/services/encryption_service"
+require "jojo_encrypted/attr_encrypted"
 
 Gem::Specification.new do |spec|
   spec.name          = "jojo_encrypted"
