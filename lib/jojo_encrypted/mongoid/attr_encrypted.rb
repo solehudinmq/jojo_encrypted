@@ -29,11 +29,11 @@ module JojoEncrypted
         private
           def masking_fields(attribute)
             define_method(attribute) do
-              self[attribute] = self[attribute]
+              self[attribute]
             end
 
             define_method("#{attribute}_decrypted") do
-              self["#{attribute}_decrypted".to_sym] = JojoEncrypted::Mongoid::Services::EncryptionService.decrypt(self[attribute]) unless self.new_record?
+              JojoEncrypted::Mongoid::Services::EncryptionService.decrypt(self[attribute])
             end
           end
       end
