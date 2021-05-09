@@ -15,19 +15,6 @@ module JojoEncrypted
               self[attribute] = JojoEncrypted::Mongoid::Services::EncryptionService.encrypt(value)
             end
 
-            masking_fields(attribute)
-          end
-        end
-
-        # encrypts fields as temporary (encryptions is not save to db)
-        def temp_encrypts(*attributes)
-          attributes.each do |attribute|
-            masking_fields(attribute)
-          end
-        end
-
-        private
-          def masking_fields(attribute)
             define_method(attribute) do
               self[attribute]
             end
@@ -36,6 +23,20 @@ module JojoEncrypted
               JojoEncrypted::Mongoid::Services::EncryptionService.decrypt(self[attribute])
             end
           end
+        end
+
+        # encrypts fields as temporary (encryptions is not save to db)
+        def temporary_encrypts(*attributes)
+          attributes.each do |attribute|
+            define_method(attribute) do
+              self[attribute]
+            end
+
+            define_method("#{attribute}_encrypted") do
+              JojoEncrypted::Mongoid::Services::EncryptionService.encrypt(self[attribute])
+            end
+          end
+        end
       end
     end
   end
