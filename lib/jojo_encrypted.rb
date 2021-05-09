@@ -1,8 +1,8 @@
 require 'yaml'
 
 require "jojo_encrypted/version"
-require "jojo_encrypted/mongoid/services/encryption_service"
-require "jojo_encrypted/mongoid/attr_encrypted"
+require "jojo_encrypted/services/encryption_service"
+require "jojo_encrypted/attr_encrypted"
 
 module JojoEncrypted
   class Error < StandardError; end
