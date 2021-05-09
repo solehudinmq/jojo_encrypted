@@ -27,11 +27,11 @@ Or install it yourself as:
 
 ## Usage
 
-After that create this file in:
+First you must create this file:
 
     $ config/jojo_encrypted.yml
 
-With the contents of a file like this:
+With the following contents:
 
     $ SECRET_KEY_BASE: "xxxxxxx"
     $ ENCRYPTION_SERVICE_SALT: "xxxxxxx"
