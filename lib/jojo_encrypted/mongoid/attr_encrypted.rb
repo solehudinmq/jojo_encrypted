@@ -15,14 +15,14 @@ module JojoEncrypted
               self[attribute] = JojoEncrypted::Mongoid::Services::EncryptionService.encrypt(value)
             end
 
-            masking_fields(self, attribute)
+            masking_fields(attribute)
           end
         end
 
         # encrypts fields as temporary (encryptions is not save to db)
         def temp_encrypts(*attributes)
           attributes.each do |attribute|
-            masking_fields(self, attribute)
+            masking_fields(attribute)
           end
         end
 
