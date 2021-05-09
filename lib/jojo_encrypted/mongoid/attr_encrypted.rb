@@ -51,10 +51,8 @@ module JojoEncrypted
               object_masking[attribute] = object_masking[attribute]
             end
 
-            unless object_masking.new_record?
-              define_method("#{attribute}_decrypted") do
-              object_masking["#{attribute}_decrypted".to_sym] = JojoEncrypted::Mongoid::Services::EncryptionService.decrypt(object_masking[attribute])
-              end
+            define_method("#{attribute}_decrypted") do
+              object_masking["#{attribute}_decrypted".to_sym] = JojoEncrypted::Mongoid::Services::EncryptionService.decrypt(object_masking[attribute]) unless object_masking.new_record?
             end
           end
       end
