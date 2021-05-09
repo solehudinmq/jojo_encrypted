@@ -1,9 +1,9 @@
 require 'yaml'
+require 'byebug'
 require 'active_support/concern'
 require 'active_support/key_generator'
 require 'active_support/message_encryptor'
 require 'active_support/core_ext/module/delegation'
-require 'byebug'
 
 require "jojo_encrypted/version"
 require "jojo_encrypted/mongoid/services/encryption_service"

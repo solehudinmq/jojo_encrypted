@@ -1,5 +1,3 @@
-require 'active_support/concern'
-
 module JojoEncrypted
   module Mongoid
     module AttrEncrypted
@@ -52,6 +50,7 @@ module JojoEncrypted
             end
 
             define_method("#{attribute}_decrypted") do
+              byebug
               object_masking["#{attribute}_decrypted".to_sym] = JojoEncrypted::Mongoid::Services::EncryptionService.decrypt(object_masking[attribute]) unless object_masking.new_record?
             end
           end

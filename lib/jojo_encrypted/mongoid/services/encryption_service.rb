@@ -1,7 +1,3 @@
-require 'active_support/key_generator'
-require 'active_support/message_encryptor'
-require 'active_support/core_ext/module/delegation'
-
 module JojoEncrypted
   module Mongoid
     module Services
