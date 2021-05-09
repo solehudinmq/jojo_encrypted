@@ -1,3 +1,6 @@
+require 'active_support/concern'
+require 'byebug'
+
 module JojoEncrypted
   module Mongoid
     module AttrEncrypted
