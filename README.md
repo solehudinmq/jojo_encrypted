@@ -51,7 +51,9 @@ You can try the following steps to create a value from the .yml file:
     $ - require 'securerandom'
     $ - SecureRandom.hex(64)
 
-In the model you have to do this to be able to encrypt the field ( for version 1 only support for integration with Mongoid gem ):
+For version 1.0, only support for integration with mongoid gem
+
+In the model you have to do this to be able to encrypt the field ( value of encryptions will be save to database ):
 
     $ include JojoEncrypted::Mongoid::AttrEncrypted
     $ encrypts :name, :phone
@@ -75,6 +77,31 @@ How to get the value from the field:
     $ user.phone # C44p+IO6lk5wURYjrrCxmA==--ule6rHVOx/m29slx--L/AnfcGdredq+MbnNlRsjg==
     $ user.name_decrypted # jes
     $ user.phone_decrypted # 212121
+
+Or if you want to encryptions field as temporary ( value of encryptions will not save to database ), just use this method
+
+    $ include JojoEncrypted::Mongoid::AttrEncrypted
+    $ temporary_encrypts :name, :phone
+
+Model Example:
+
+    $ class User
+    $   include Mongoid::Document
+  
+    $   include JojoEncrypted::Mongoid::AttrEncrypted
+    $   temporary_encrypts :name, :phone
+
+    $   field :name, type: String
+    $   field :phone, type: String
+    $ end
+
+How to get the value from the field:
+
+    $ user = User.first
+    $ user.name # jes
+    $ user.phone # 212121
+    $ user.name_encrypted # rROxnMF4762NQnrF9w==--6BoWbXrvSFN85mv1--iCkdjRqHvc9vDPBVlEL/Xg==
+    $ user.phone_encrypted # C44p+IO6lk5wURYjrrCxmA==--ule6rHVOx/m29slx--L/AnfcGdredq+MbnNlRsjg==
 
 ## Development
 
