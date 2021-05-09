@@ -15,16 +15,6 @@ module JojoEncrypted
               self[attribute] = JojoEncrypted::Mongoid::Services::EncryptionService.encrypt(value)
             end
 
-            # define_method(attribute) do
-            #   self[attribute] = self[attribute]
-            # end
-
-            # unless self.new_record?
-            #   define_method("#{attribute}_decrypted") do
-            #     self["#{attribute}_decrypted".to_sym] = JojoEncrypted::Mongoid::Services::EncryptionService.decrypt(self[attribute])
-            #   end
-            # end
-
             masking_fields(self, attribute)
           end
         end
@@ -32,29 +22,18 @@ module JojoEncrypted
         # encrypts fields as temporary (encryptions is not save to db)
         def temp_encrypts(*attributes)
           attributes.each do |attribute|
-            # define_method(attribute) do
-            #   self[attribute] = self[attribute]
-            # end
-
-            # unless self.new_record?
-            #   define_method("#{attribute}_decrypted") do
-            #     self["#{attribute}_decrypted".to_sym] = JojoEncrypted::Mongoid::Services::EncryptionService.decrypt(self[attribute])
-            #   end
-            # end
-
             masking_fields(self, attribute)
           end
         end
 
         private
-          def masking_fields(object_masking, attribute)
+          def masking_fields(attribute)
             define_method(attribute) do
-              object_masking[attribute] = object_masking[attribute]
+              self[attribute] = self[attribute]
             end
 
             define_method("#{attribute}_decrypted") do
-              byebug
-              object_masking["#{attribute}_decrypted".to_sym] = JojoEncrypted::Mongoid::Services::EncryptionService.decrypt(object_masking[attribute]) unless object_masking.new_record?
+              self["#{attribute}_decrypted".to_sym] = JojoEncrypted::Mongoid::Services::EncryptionService.decrypt(self[attribute]) unless self.new_record?
             end
           end
       end
