@@ -2,11 +2,6 @@
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
-require 'active_support/concern'
-require 'active_support/key_generator'
-require 'active_support/message_encryptor'
-require 'active_support/core_ext/module/delegation'
-
 require "jojo_encrypted/version"
 require "jojo_encrypted/mongoid/services/encryption_service"
 require "jojo_encrypted/mongoid/attr_encrypted"
@@ -21,6 +16,8 @@ Gem::Specification.new do |spec|
   spec.description   = %q{Simple field encryption for rails project}
   spec.homepage      = "http://example.com"
   spec.license       = "MIT"
+
+  sepc.required_ruby_version = '>= 2.5.0'
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
