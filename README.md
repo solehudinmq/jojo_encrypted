@@ -6,7 +6,7 @@ TODO: Delete this and the text above, and describe your gem
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Add this line to your application's Gemfile ( minimum ruby version is 2.5.0 ):
 
 ```ruby
 gem 'jojo_encrypted'
@@ -19,7 +19,7 @@ gem 'jojo_encrypted', git: 'git@github.com:solehudinmq/jojo_encrypted.git', bran
 
 And then execute:
 
-    $ bundle
+    $ bundle install
 
 Or install it yourself as:
 
